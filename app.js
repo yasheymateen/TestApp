@@ -1,6 +1,15 @@
 import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { createRouter, createWebHistory } from 'vue-router';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(reg => console.log('Service Worker registered!', reg))
+      .catch(err => console.error('Service Worker registration failed', err));
+  });
+}
+
+
 function navigate(page) {
     const content = document.getElementById('content');
 
